@@ -9999,6 +9999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e727be14c81d8429c415d20137d243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  runner: {fileID: 0}
   HeadControls:
     sensitivity: 110
     Head: {fileID: 6758492048555605132}
@@ -19904,7 +19906,6 @@ GameObject:
   - component: {fileID: 7745862477990256226}
   - component: {fileID: 1565547368732940481}
   - component: {fileID: 8473293537656741429}
-  - component: {fileID: 7444187613660988617}
   - component: {fileID: 3069546185786772228}
   m_Layer: 0
   m_Name: Body
@@ -19981,27 +19982,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9151251454577643601}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &7444187613660988617
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9151251454577643601}
-  m_Material: {fileID: 13400000, guid: 8fb13c7e00791a74dad46111b4215d55, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &3069546185786772228
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20021,7 +20001,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.65
+  m_Height: 1.12
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

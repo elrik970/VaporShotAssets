@@ -26,9 +26,15 @@ public class Grounded : PlayerState<Player>
     public override void ChangeState() {
         if (player.OnWall(player.Char.Body.right)) {
             runner.SetState(player.States.WallRunningRightState);
+            return;
         }
         if (!player.OnGround()) {
+            if (rb.velocity.y > 0) {
+                runner.SetState(player.States.RisingState);
+                return;
+            }
             runner.SetState(player.States.FallingState);
+            return;
         }
 
         if (Player.Inputs.Default.Slide.ReadValue<float>() > 0f) {

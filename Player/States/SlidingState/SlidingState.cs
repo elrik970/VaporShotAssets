@@ -12,6 +12,8 @@ public class SlidingState : PlayerState<Player>
     public float slidingMultiplier = 1.3f;
     private float curSlidingMult;
     public float Drag = 0.1f;
+    public float timeOffGround;
+    private float curTimeOffGround;
     public override void Init(Player parent) {
         base.Init(parent);
         player.SetGravity(slidingGravity);
@@ -20,6 +22,7 @@ public class SlidingState : PlayerState<Player>
 
         player.Forces.curCoyoteTime = player.Forces.coyoteTime;
         Player.Inputs.Default.Dash.performed += OnDash;
+        curTimeOffGround = 0f;
 
     }
     public override void ConstantUpdate() {
@@ -35,7 +38,13 @@ public class SlidingState : PlayerState<Player>
     public override void PhysicsUpdate() {
         
         if (!player.OnGround()) {
-            runner.SetState(player.States.FallingState);
+            curTimeOffGround+=Time.deltaTime;
+            if (curTimeOffGround > timeOffGround) {
+                runner.SetState(player.States.FallingState);
+            }
+        }
+        else {
+            curTimeOffGround = 0f;
         }
         player.SlideMove(Player.Inputs.Default.Movement.ReadValue<Vector2>(),Player.Inputs.Default.Sprint.ReadValue<float>() > 0,slidingMultiplier,slidingAccel);
     }

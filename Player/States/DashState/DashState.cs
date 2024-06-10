@@ -18,6 +18,7 @@ public class DashState : PlayerState<Player>
     public VolumeProfile DashVolume;
     public Color DashColor;
     public float CoyoteTime;
+    public float jumpForce;
 
 
     public override void Init(Player parent) {
@@ -36,8 +37,8 @@ public class DashState : PlayerState<Player>
         player.ParticleFX.speedEffect.Play();
 
         Vector3 nonYvelocity = new Vector3(rb.velocity.x,0f,rb.velocity.z);
-        if (nonYvelocity.magnitude > DashSpeed) {
-            tempDashSpeed = nonYvelocity.magnitude;
+        if (nonYvelocity.magnitude*velocityDivider > DashSpeed) {
+            tempDashSpeed = nonYvelocity.magnitude*velocityDivider;
         }
         else {
             tempDashSpeed = DashSpeed;
@@ -80,7 +81,7 @@ public class DashState : PlayerState<Player>
     }
     void OnJump(InputAction.CallbackContext context) {
         runner.SetState(player.States.JumpState);
-        player.Jump();
+        player.Jump(jumpForce);
         player.DoubleJumpFx();
     }
 }

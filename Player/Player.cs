@@ -10,14 +10,15 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rb;
-    private StateManager runner;
+    public Rigidbody rb;
+    public StateManager runner;
     public static PlayerInputs Inputs;
     public HeadControls HeadControls;
     public States States;
     public Forces Forces;
     public Character Char;
     public ParticleFX ParticleFX;
+    
     
 
 
@@ -31,12 +32,14 @@ public class Player : MonoBehaviour
         if (Inputs != null) {
             Inputs.Disable();
         }
+        Cursor.lockState = CursorLockMode.None;
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         runner = GetComponent<StateManager>();
+        
         Forces.constantForce = GetComponent<ConstantForce>();
         Inputs.Default.Jump.performed += OnJump;
     }
@@ -73,9 +76,9 @@ public class Player : MonoBehaviour
             return false;
         }
     }
-    public void Jump() {
+    public void Jump(float jumpForce = 35f) {
         rb.velocity = new Vector3(rb.velocity.x,0f,rb.velocity.z);
-        rb.AddForce(Vector3.up*Forces.jumpForce,ForceMode.Impulse);
+        rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
         Forces.MoveReference.transform.localRotation = Quaternion.identity;
     }
     public void SetGravity(float gravityScale) {
@@ -88,6 +91,12 @@ public class Player : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public RaycastHit GroundRay() {
+        RaycastHit hit;
+
+        Physics.SphereCast(transform.position, Char.width, Vector3.down, out hit, Char.halfHeight, Char.GroundLayerMask);
+        return hit;
     }
     public void Move(Vector2 MoveDirection,bool sprinting = false,bool grounded = false) {
         sprinting = true;

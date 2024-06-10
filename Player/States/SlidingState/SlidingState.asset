@@ -19,3 +19,4 @@ MonoBehaviour:
   slidingAccel: 0.008
   slidingMultiplier: 1
   Drag: 20
+  timeOffGround: 0.2

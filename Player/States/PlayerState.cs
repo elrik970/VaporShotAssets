@@ -9,7 +9,7 @@ public abstract class PlayerState<Player> : ScriptableObject where Player : Mono
     public Rigidbody rb;
     
     public virtual void Init(Player parent) {
-        player = parent.GetComponent<Player>();
+        player = parent;
         runner = parent.GetComponent<StateManager>();
         rb = parent.GetComponent<Rigidbody>();
     }

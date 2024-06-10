@@ -12,6 +12,7 @@ public class RisingState : PlayerState<Player>
         base.Init(parent);
         player.SetGravity(risingGravityScale);
         Player.Inputs.Default.Dash.performed += OnDash;
+        player.Forces.curCoyoteTime = player.Forces.coyoteTime;
 
         
 

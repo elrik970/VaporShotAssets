@@ -21,3 +21,4 @@ MonoBehaviour:
   DashVolume: {fileID: 11400000, guid: 0d7679c79ee4de04196ca05b39e873c3, type: 2}
   DashColor: {r: 1, g: 0.7744107, b: 0.20392156, a: 1}
   CoyoteTime: 0.1
+  jumpForce: 40

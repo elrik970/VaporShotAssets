@@ -52,6 +52,7 @@ public class JumpState : PlayerState<Player>
     }
     public override void Exit() {
         Player.Inputs.Default.Jump.canceled -= OnJumpRelease;
+        Player.Inputs.Default.Dash.performed -= OnDash;
         player.SetGravity(player.Forces.defaultGravityScale);
     }
 
